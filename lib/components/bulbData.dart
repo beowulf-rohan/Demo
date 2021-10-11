@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 class BulbColor extends ChangeNotifier {
   String bulbColor = "#ffd139";
+  bool isOn = true;
   String opacity = "1";
 
   void changeColor(String newColor) {
@@ -16,7 +17,7 @@ class BulbColor extends ChangeNotifier {
   }
 
   void turnOff() {
-    bulbColor = "#000000";
+    isOn = !isOn;
     notifyListeners();
   }
 }

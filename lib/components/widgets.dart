@@ -211,14 +211,22 @@ class _LightBulbState extends State<LightBulb> with SingleTickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
+    String opacity = Provider.of<BulbColor>(context).opacity;
+    bool isOn = Provider.of<BulbColor>(context).isOn;
+    if (opacity.compareTo("0.0") == 0) {
+      isOn = false;
+      opacity = "1.0";
+    }
+    String color = (isOn) ? Provider.of<BulbColor>(context).bulbColor : "#000000";
+
     return SlideTransition(
       position: animation,
       child: FadeTransition(
         opacity: animationController,
         child: SvgPicture.string(
             getSvg(
-              Provider.of<BulbColor>(context).bulbColor,
-              Provider.of<BulbColor>(context).opacity,
+              color,
+              opacity,
             ),
             height: 200),
       ),
@@ -328,7 +336,6 @@ class _PowerButtonState extends State<PowerButton> {
     );
   }
 }
-
 
 class CircularButton extends StatelessWidget {
   final Color colors;
@@ -494,13 +501,18 @@ class _IntensityContainerState extends State<IntensityContainer> {
                     String newOpacity;
                     if (lightLevel == 5) {
                       newOpacity = "1";
-                    } else if (lightLevel >= 3) {
+                    } else if (lightLevel == 4) {
                       newOpacity = "0.8";
-                    } else if (lightLevel >= 1) {
+                    } else if (lightLevel == 3) {
                       newOpacity = "0.6";
-                    } else {
+                    } else if (lightLevel == 2) {
                       newOpacity = "0.4";
+                    } else if (lightLevel == 1) {
+                      newOpacity = "0.2";
+                    } else {
+                      newOpacity = "0.0";
                     }
+
                     Provider.of<BulbColor>(context, listen: false).changeOpacity(newOpacity);
                   },
                 ),
