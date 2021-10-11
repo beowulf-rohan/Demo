@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 class RoomKeys{
   String file_path, room_name;
   int lightsCount;

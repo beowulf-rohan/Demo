@@ -25,86 +25,88 @@ class _HomeScreenState extends State<HomeScreen> {
       heightUpper = totHeight / 4;
     });
 
-    return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          color:primary,
-        ),
-        child: Column(
-          children: [
-            SizedBox(
-                height: heightUpper,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 30),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          decoration: const BoxDecoration(
+            color:primary,
+          ),
+          child: Column(
+            children: [
+              SizedBox(
+                  height: heightUpper,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 30),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: const [
+                        Text(
+                          "Control\nPanel",
+                          style: TextStyle(
+                            fontSize: 35,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(width: 30),
+                        CircleAvatar(
+                            radius: 40,
+                            backgroundColor: Colors.white,
+                            backgroundImage: AssetImage("assets/images/user.jpg")),
+                      ],
+                    ),
+                  )),
+              Expanded(
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: secondary,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(50.0),
+                      topRight: Radius.circular(50.0),
+                    ),
+                  ),
+                  // height: heightLower,
+                  width: MediaQuery.of(context).size.width,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: const [
-                      Text(
-                        "Control\nPanel",
-                        style: TextStyle(
-                          fontSize: 35,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white,
+                      Padding(
+                        padding: EdgeInsets.only(top: 40, left: 40, bottom: 10),
+                        child: Text(
+                          "All Rooms",
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.w500,
+                            color: primaryDark,
+                          ),
                         ),
                       ),
-                      SizedBox(width: 30),
-                      CircleAvatar(
-                          radius: 40,
-                          backgroundColor: Colors.white,
-                          backgroundImage: AssetImage("assets/images/user.jpg")),
+                      Rooms(),
                     ],
                   ),
-                )),
-            Expanded(
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: secondary,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(50.0),
-                    topRight: Radius.circular(50.0),
-                  ),
                 ),
-                // height: heightLower,
-                width: MediaQuery.of(context).size.width,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Padding(
-                      padding: EdgeInsets.only(top: 40, left: 40, bottom: 10),
-                      child: Text(
-                        "All Rooms",
-                        style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.w500,
-                          color: primaryDark,
-                        ),
-                      ),
-                    ),
-                    Rooms(),
-                  ],
-                ),
-              ),
-            )
+              )
+            ],
+          ),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.white,
+          items: [
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset("assets/images/bulb.svg"),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset("assets/images/Icon feather-home.svg"),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset("assets/images/Icon feather-settings.svg"),
+              label: '',
+            ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-        items: [
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/images/bulb.svg"),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/images/Icon feather-home.svg"),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/images/Icon feather-settings.svg"),
-            label: '',
-          ),
-        ],
       ),
     );
   }
